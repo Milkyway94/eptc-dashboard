@@ -21,6 +21,9 @@ class Config:
     # Session configuration
     SESSION_TYPE = 'filesystem'
     PERMANENT_SESSION_LIFETIME = timedelta(hours=1)
+    SESSION_COOKIE_SECURE = False  # Set to True in production
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Lax'  # Will be 'None' in production
 
     # File upload configuration
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
@@ -49,6 +52,11 @@ class ProductionConfig(Config):
     # Override with environment variables in production
     # IMPORTANT: Set SECRET_KEY environment variable in production!
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'CHANGE-THIS-IN-PRODUCTION'
+
+    # Session cookie configuration for cross-origin requests
+    SESSION_COOKIE_SECURE = True  # Require HTTPS
+    SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-origin
+    SESSION_COOKIE_HTTPONLY = True  # Prevent XSS attacks
 
 
 class TestingConfig(Config):
