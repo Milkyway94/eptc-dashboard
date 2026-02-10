@@ -4,9 +4,9 @@ import { resolve } from 'path';
 export default defineConfig({
   root: '.',
   // Set base path for GitHub Pages deployment
-  // Change 'fixed-warning' to your actual repository name
+  // Repository name: eptc-dashboard
   base: process.env.NODE_ENV === 'production'
-    ? '/fixed-warning/'
+    ? '/eptc-dashboard/'
     : '/',
   build: {
     outDir: 'dist',
