@@ -1,0 +1,148 @@
+/**
+ * Heatmap Calendar Styles
+ */
+
+#heatmap-container {
+  background-color: $bg-white;
+  border-radius: $border-radius;
+  padding: 1.5rem;
+  box-shadow: $shadow-md;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.month-card {
+  background-color: #fafafa;
+  border-radius: $border-radius;
+  padding: 1rem;
+  box-shadow: $shadow-sm;
+}
+
+.month-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $primary-color;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid $primary-color;
+}
+
+.dow-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.dow-cell {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $text-secondary;
+  text-align: center;
+  padding: 0.25rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.day-cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0.25rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: $transition;
+  cursor: default;
+
+  &.empty {
+    background-color: transparent;
+  }
+
+  &.has-tasks {
+    font-weight: 600;
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: $shadow-md;
+      z-index: 10;
+    }
+  }
+}
+
+.day-number {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.task-count {
+  position: absolute;
+  bottom: 0.125rem;
+  right: 0.125rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: inherit;
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  line-height: 1;
+  min-width: 1rem;
+  text-align: center;
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  .heatmap-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  #heatmap-container {
+    padding: 1rem;
+  }
+
+  .heatmap-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .month-card {
+    padding: 0.75rem;
+  }
+
+  .day-cell {
+    font-size: 0.8rem;
+  }
+
+  .day-number {
+    font-size: 0.7rem;
+  }
+
+  .task-count {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heatmap-grid {
+    grid-template-columns: 1fr;
+  }
+}

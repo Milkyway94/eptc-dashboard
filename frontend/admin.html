@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Import Dữ liệu | EPTC Dashboard</title>
+  <link rel="stylesheet" href="/src/styles/main.scss">
+</head>
+<body class="admin-page">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="container">
+      <h1>🔐 Admin Panel</h1>
+      <div class="header-actions">
+        <a href="/index.html" class="btn btn-secondary">
+          ← Về Dashboard
+        </a>
+        <button id="logout-btn" class="btn btn-danger" style="display: none;">
+          Đăng xuất
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Form -->
+  <div class="login-container" id="login-container">
+    <div class="login-card">
+      <h2>Đăng nhập Admin</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            placeholder="admin"
+            required
+            autocomplete="username"
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="••••••"
+            required
+            autocomplete="current-password"
+          >
+        </div>
+        <div class="form-error" id="login-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Đăng nhập
+        </button>
+      </form>
+      <div class="login-hint">
+        <p>Mặc định: admin / admin123</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Content -->
+  <main class="admin-content" id="admin-content" style="display: none;">
+    <div class="container">
+      <!-- Welcome Section -->
+      <section class="welcome-section">
+        <h2>Chào mừng, <span id="admin-name"></span>!</h2>
+        <p>Import dữ liệu công việc từ file Excel</p>
+      </section>
+
+      <!-- Upload Section -->
+      <section class="upload-section">
+        <div class="card">
+          <div class="card-header">
+            <h3>📁 Import File Excel</h3>
+          </div>
+          <div class="card-body">
+            <div id="file-upload-container"></div>
+
+            <div class="upload-actions" id="upload-actions" style="display: none;">
+              <button type="button" class="btn btn-primary" id="preview-btn">
+                Xem trước
+              </button>
+              <button type="button" class="btn btn-success" id="import-btn">
+                Import ngay
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Preview Section -->
+      <section class="preview-section" id="preview-section" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <h3>👀 Xem trước dữ liệu</h3>
+          </div>
+          <div class="card-body">
+            <div id="preview-content"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Import Result Section -->
+      <section class="result-section" id="result-section" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <h3 id="result-title"></h3>
+          </div>
+          <div class="card-body">
+            <div id="result-content"></div>
+            <div class="result-actions">
+              <button class="btn btn-primary" onclick="location.href='/index.html'">
+                Xem Dashboard
+              </button>
+              <button class="btn btn-secondary" onclick="location.reload()">
+                Import thêm
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="card">
+          <div class="card-header">
+            <h3>📊 Thống kê hiện tại</h3>
+          </div>
+          <div class="card-body">
+            <div class="stats-grid" id="stats-grid">
+              <div class="stat-item">
+                <div class="stat-label">Tổng công việc</div>
+                <div class="stat-value" id="stat-total-tasks">-</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Phòng ban</div>
+                <div class="stat-value" id="stat-departments">-</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Từ ngày</div>
+                <div class="stat-value" id="stat-min-date">-</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Đến ngày</div>
+                <div class="stat-value" id="stat-max-date">-</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+    <p id="loading-message">Đang xử lý...</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container">
+      <p>&copy; 2026 EPTC - Admin Panel</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/admin.js"></script>
+</body>
+</html>
