@@ -3,97 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KẾ HOẠCH 2026 - EPTC Dashboard</title>
+  <title>Kế hoạch Cảnh báo 2026 - EPTC</title>
   <link rel="stylesheet" href="/src/styles/main.scss">
 </head>
 <body>
-  <!-- Header -->
-  <header class="app-header">
-    <div class="container">
-      <h1>📅 KẾ HOẠCH 2026</h1>
-      <div class="header-actions">
-        <div class="legend-toggle">
-          <button id="toggle-legend-btn" class="btn btn-secondary">
-            Hiển thị chú thích
-          </button>
-        </div>
-        <a href="./admin.html" class="btn btn-primary">
-          Admin
-        </a>
-      </div>
-    </div>
-  </header>
 
-  <!-- Color Legend (collapsible) -->
-  <div class="color-legend" id="color-legend" style="display: none;">
-    <div class="container">
-      <h3>Chú thích màu sắc:</h3>
-      <div class="legend-items">
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: #f0f0f0;"></span>
-          <span class="legend-label">Không có việc (0)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: #b3e5fc;"></span>
-          <span class="legend-label">Ít việc (1-2)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: #fff176;"></span>
-          <span class="legend-label">Trung bình (3-4)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: #ffb74d;"></span>
-          <span class="legend-label">Nhiều việc (5-7)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: #e57373;"></span>
-          <span class="legend-label">Rất nhiều việc (8+)</span>
-        </div>
-      </div>
+<!-- Header Area -->
+<div class="header-area">
+  <h1 class="header-title">📅 Kế hoạch 2026</h1>
+
+  <div class="controls">
+    <select id="deptFilter" class="dept-select">
+      <option value="all">Tất cả (All)</option>
+      <!-- Department options will be populated by JavaScript -->
+    </select>
+
+    <div class="legend">
+      <div class="legend-item"><span class="dot lvl-1"></span> 1-2</div>
+      <div class="legend-item"><span class="dot lvl-2"></span> 3-4</div>
+      <div class="legend-item"><span class="dot lvl-3"></span> 5-7</div>
+      <div class="legend-item"><span class="dot lvl-4"></span> 8-9</div>
+      <div class="legend-item"><span class="dot lvl-5"></span> 10+</div>
+    </div>
+
+    <a href="./admin.html" class="btn btn-primary">
+      Admin
+    </a>
+  </div>
+</div>
+
+<!-- Main Container -->
+<div class="main-container">
+
+  <!-- Calendar Section -->
+  <div class="calendar-section" id="calSection">
+    <div id="calendarGrid" class="year-grid">
+      <!-- Calendar will be rendered by JavaScript -->
     </div>
   </div>
 
-  <!-- Loading Spinner -->
-  <div class="loading" id="loading">
-    <div class="spinner"></div>
-    <p>Đang tải dữ liệu...</p>
-  </div>
-
-  <!-- Main Content -->
-  <main class="main-content" id="main-content" style="display: none;">
-    <div class="container">
-      <div class="dashboard-layout">
-        <!-- Heatmap Section -->
-        <section class="heatmap-section">
-          <div id="heatmap-container"></div>
-        </section>
-
-        <!-- Sidebar Section -->
-        <aside class="sidebar-section">
-          <div id="sidebar-container"></div>
-        </aside>
+  <!-- Sidebar Section -->
+  <div class="sidebar-section" id="sideSection">
+    <div class="sidebar-header">
+      <h3>🚀 Sắp diễn ra</h3>
+      <div id="sidebar-date-info" style="font-size:0.8rem; color:#777; margin-bottom: 5px;"></div>
+      <div class="sidebar-note">
+        <span></span> * Màu ô ngày thay đổi theo tháng.
       </div>
     </div>
-  </main>
-
-  <!-- Error Message -->
-  <div class="error-message" id="error-message" style="display: none;">
-    <div class="container">
-      <h2>⚠️ Lỗi</h2>
-      <p id="error-text"></p>
-      <button class="btn btn-primary" onclick="location.reload()">
-        Tải lại trang
-      </button>
+    <div id="upcomingList" class="upcoming-list">
+      <!-- Upcoming tasks will be rendered by JavaScript -->
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="app-footer">
-    <div class="container">
-      <p>&copy; 2026 EPTC - Hệ thống Quản lý Công việc</p>
-    </div>
-  </footer>
+</div>
 
-  <script type="module" src="/src/main.js"></script>
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-box">
+    <button class="close-btn" id="closeModalBtn">&times;</button>
+    <h2 id="modalTitle" class="modal-title"></h2>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div id="loading" style="display:none; text-align:center; padding:40px;">
+  <div>Đang tải dữ liệu...</div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
 </body>
 </html>
